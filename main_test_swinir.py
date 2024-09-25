@@ -30,16 +30,6 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f'Using device: {device}')
     
-    # Set up model
-    if os.path.exists(args.model_path):
-        print(f'loading model from {args.model_path}')
-    else:
-        os.makedirs(os.path.dirname(args.model_path), exist_ok=True)
-        url = 'https://github.com/JingyunLiang/SwinIR/releases/download/v0.0/{}'.format(os.path.basename(args.model_path))
-        r = requests.get(url, allow_redirects=True)
-        print(f'downloading model {args.model_path}')
-        open(args.model_path, 'wb').write(r.content)
-
     model = define_model(args)
     model.eval()
     model = model.to(device)

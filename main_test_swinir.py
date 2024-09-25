@@ -28,6 +28,7 @@ def main():
     args = parser.parse_args()
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    logger.info(f'Using device: {device}')
     
     # Set up model
     if os.path.exists(args.model_path):
